@@ -1,13 +1,12 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
-local ThrowModule = require(ReplicatedStorage.Modules.Client.ThrowBrainrot)
+local ThrowModule = require(ReplicatedStorage.Modules.Client.ThrowController)
 
 local module = {}
 
 function onButtonClicked(char)
-	print("button clicked")
-	ThrowModule.ThrowBrainrot(char, "TungSahur", 100, 50)
+	ThrowModule.ThrowBrainrot()
 end
 
 function module.init()

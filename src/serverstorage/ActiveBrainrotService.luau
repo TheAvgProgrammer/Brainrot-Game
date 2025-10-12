@@ -1,0 +1,2 @@
+-- implement this, fire repevent and replicate brainrot in all clients
+-- also check activebrainrotcontroller

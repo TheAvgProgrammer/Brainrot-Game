@@ -1,1 +1,15 @@
-print("Hello world, from server!")
+local HitRegister = require(game.ServerStorage.Modules.HitService)
+local PlayerService = require(game.ServerStorage.Modules.PlayerService)
+local ThrowService = require(game.ServerStorage.Modules.ThrowService)
+local BrainrotService = require(game.ServerStorage.Modules.ActiveBrainrotService)
+
+HitRegister.Initialize()
+ThrowService.Initialize()
+
+game.Players.PlayerAdded:Connect(function(player)
+	-- PlayerService.SetupPlayer(player)
+	PlayerService.Initialize(player)
+	player.CharacterAdded:Connect(function(character)
+		BrainrotService.Initialize(player)
+	end)
+end)

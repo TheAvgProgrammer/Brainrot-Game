@@ -6,12 +6,20 @@
     "ReplicatedStorage": {
       "Modules": {
         "$path": "src/modules"
-      }
+      },
+      "Packages": { "$path": "Packages" }
+
     },
 
     "ServerScriptService": {
       "Server": {
         "$path": "src/server"
+      }
+    },
+
+    "ServerStorage": {
+      "Modules": {
+        "$path": "src/serverstorage"
       }
     },
 
