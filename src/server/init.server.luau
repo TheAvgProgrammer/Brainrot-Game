@@ -2,7 +2,9 @@ local HitRegister = require(game.ServerStorage.Modules.HitService)
 local PlayerService = require(game.ServerStorage.Modules.PlayerService)
 local ThrowService = require(game.ServerStorage.Modules.ThrowService)
 local BrainrotService = require(game.ServerStorage.Modules.ActiveBrainrotService)
+local NPCService = require(game.ServerStorage.Modules.NPCService)
 
+NPCService.Initialize()
 HitRegister.Initialize()
 ThrowService.Initialize()
 

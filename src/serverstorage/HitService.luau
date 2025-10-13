@@ -15,6 +15,23 @@ function module.RegisterHit(player, data)
 			local target = tuple.target
 			if humanoid and humanoid.Health > 0 then
 				-- Apply knockback effect
+				if target.HumanoidRootPart:GetNetworkOwner() == nil then
+					-- Set the player's client as the network owner for smoother movement
+					target.HumanoidRootPart:SetNetworkOwner(player)
+
+					task.delay(1.5, function()
+						if target and target.Parent then
+							target.HumanoidRootPart:SetNetworkOwner(nil) -- Revert control back to server after delay
+						end
+					end)
+				end
+
+				task.delay(2, function()
+					if target and target.Parent then
+						target.HumanoidRootPart:SetNetworkOwner(nil) -- Revert control back to server after delay
+					end
+				end)
+
 				local knockbackVelocity = direction * 50 + Vector3.new(0, 30, 0) -- Adjust values as needed
 				BodyMoverHandler.AddVelocity(target, knockbackVelocity, 0.3)
 			end

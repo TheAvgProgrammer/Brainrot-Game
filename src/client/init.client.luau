@@ -2,6 +2,7 @@ local TeleportPlayer = require(game.ReplicatedStorage.Modules.Misc.TeleportPlaye
 local ThrowModule = require(game.ReplicatedStorage.Modules.Gui.Main.Throw)
 local ThrowController = require(game.ReplicatedStorage.Modules.Client.ThrowController)
 local InputController = require(game.ReplicatedStorage.Modules.Client.InputController)
+local ActiveBrainrotController = require(game.ReplicatedStorage.Modules.Client.ActiveBrainrotController)
 
 local Player = game.Players.LocalPlayer
 
@@ -10,4 +11,5 @@ Player.CharacterAdded:Connect(function(char)
 	ThrowModule.init()
 	InputController.Initialize()
 	ThrowController.Initialize()
+	ActiveBrainrotController.Initialize()
 end)

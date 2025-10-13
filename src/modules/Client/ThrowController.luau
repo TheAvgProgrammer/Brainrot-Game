@@ -21,10 +21,10 @@ function module.Initialize()
 	local QSignal = InputController.GetSignal(Enum.KeyCode.Q)
 	QSignal:Connect(function(message)
 		local char = Players.LocalPlayer.Character
-		if char and char:FindFirstChildOfClass("Humanoid") and char.Humanoid.Health > 0 then
+		if char and char:FindFirstChildOfClass("Humanoid") and char.Humanoid.Health > 0 and message == "InputBegan" then
 			module.ThrowBrainrot()
 		end
 	end)
 end
-
+--something
 return module

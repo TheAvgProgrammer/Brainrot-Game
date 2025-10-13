@@ -1,9 +1,11 @@
+--TODO: remove the dependency from PlayerService
+-- Recieve it from RepEvent instead
+
 local RS = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
 local RepEvent = RS.Events.RepEvent
 
-local PlayerService = require(SS.Modules.PlayerService)
 local module = {}
 
 local ActiveBrainrots = {}
@@ -15,15 +17,15 @@ function onHeartbeat(player)
 end
 
 function module.Initialize()
-	RepEvent.OnClientEvent:Connect(function(plr, message)
+	RepEvent.OnClientEvent:Connect(function(plr, message, data)
 		if message == "InitializeBrainrot" then
-			module.UpdateBrainrotPosition(plr) -- immediate update
+			module.InitializePlayer(plr, data) -- immediate update
 		end
 	end)
 end
 
-function module.InitializePlayer(player)
-	local BrainrotName = PlayerService.GetSelectedBrainrot(player)
+function module.InitializePlayer(player, data)
+	local BrainrotName = data.SelectedBrainrot
 	if not BrainrotName then
 		error("No Brainrot Selected or brainrot not found")
 	end
@@ -57,7 +59,7 @@ function module.UpdateBrainrotPosition(player, deltaTime)
 	end
 
 	-- Fixed offset relative to player (to their top-right)
-	local offset = Vector3.new(2, 3, 0) -- (X=right, Y=up, Z=front/back)
+	local offset = Vector3.new(2.5, 1.5, 0) -- (X=right, Y=up, Z=front/back)
 
 	-- Floating motion
 	local floatSpeed = 2
