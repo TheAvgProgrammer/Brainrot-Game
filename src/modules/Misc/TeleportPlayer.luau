@@ -21,6 +21,7 @@ function tp.TeleportPlayer(char, location: string)
 end
 
 function tp.init()
+	print("TeleportPlayer initialized")
 	local TpButton = PlayerGui.MainUI.Frame:FindFirstChild("Teleport ")
 	TpButton.TextLabel.Text = "Teleport to Arena"
 	if TpButton then

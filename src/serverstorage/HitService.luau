@@ -16,7 +16,7 @@ function module.RegisterHit(player, data)
 			if humanoid and humanoid.Health > 0 then
 				-- Apply knockback effect
 				if target.HumanoidRootPart:GetNetworkOwner() == nil then
-					-- Set the player's client as the network owner for smoother movement
+					-- Set the player's client 	as the network owner for smoother movement
 					target.HumanoidRootPart:SetNetworkOwner(player)
 
 					task.delay(1.5, function()

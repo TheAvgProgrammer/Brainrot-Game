@@ -4,6 +4,10 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local module = {}
 
 function module.Initialize(player)
+	local leaderstats = Instance.new("Folder")
+	leaderstats.Name = "leaderstats"
+	leaderstats.Parent = player
+
 	local metadata = Instance.new("Folder")
 	metadata.Name = "Metadata"
 	metadata.Parent = player

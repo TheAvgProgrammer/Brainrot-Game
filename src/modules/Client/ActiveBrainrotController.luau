@@ -17,9 +17,9 @@ function onHeartbeat(player)
 end
 
 function module.Initialize()
-	RepEvent.OnClientEvent:Connect(function(plr, message, data)
-		if message == "InitializeBrainrot" then
-			module.InitializePlayer(plr, data) -- immediate update
+	RepEvent.OnClientEvent:Connect(function(data)
+		if data.message == "InitializeBrainrot" then
+			module.InitializePlayer(data.plr, data) -- immediate update
 		end
 	end)
 end

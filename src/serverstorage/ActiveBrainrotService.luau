@@ -9,7 +9,9 @@ local module = {}
 
 function module.Initialize(player)
 	if RepEvent then
-		RepEvent:FireAllClients(player, "InitializeBrainrot", {
+		RepEvent:FireAllClients({
+			plr = player,
+			message = "InitializeBrainrot",
 			SelectedBrainrot = player.Metadata.SelectedBrainrot.Value,
 		})
 	end
