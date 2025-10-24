@@ -1,4 +1,5 @@
 local RS = game:GetService("ReplicatedStorage")
+local Workspace = game:GetService("Workspace")
 
 local BodyMoverHandler = require(RS.Modules.Misc.BodyMoverHandler)
 local HitEvent = RS:WaitForChild("Events"):WaitForChild("HitEvent")

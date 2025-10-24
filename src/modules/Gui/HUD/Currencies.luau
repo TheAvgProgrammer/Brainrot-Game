@@ -22,6 +22,7 @@ function module.Init()
 			module.UpdateCurrencyGui(data)
 		end
 	end
+	print("server invoked")
 
 	local Currency = CurrencyUpdate:InvokeServer({ message = "CurrencyRequest" })
 	module.UpdateCurrencyGui(Currency)

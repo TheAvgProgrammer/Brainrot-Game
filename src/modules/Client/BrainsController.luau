@@ -1,17 +1,13 @@
 local RS = game:GetService("ReplicatedStorage")
 local Remote = RS.Events.RepEvent
 
+-- local Hitbox = require(RS.Modules.Misc.Hitbox)
+
 local Player = game.Players.LocalPlayer
+local Character = Player.Character or Player.CharacterAdded:Wait()
 
 local module = {}
 
-function module.Initialize()
-	-- Remote.OnClientEvent:Connect(function(data)
-	-- 	if data.message and data.message == "SpawnBrains" then
-	-- 		local BrainModel = RS.Models.Brain:Clone()
-	-- 		module.SpawnBrains(BrainModel, data.numberBrains)
-	-- 	end
-	-- end)
-end
+function module.Initialize() end
 
 return module

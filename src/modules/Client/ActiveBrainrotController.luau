@@ -1,6 +1,3 @@
---TODO: remove the dependency from PlayerService
--- Recieve it from RepEvent instead
-
 local RS = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 

@@ -1,3 +1,4 @@
+local Workspace = game:GetService("Workspace")
 local TeleportPlayer = require(game.ReplicatedStorage.Modules.Misc.TeleportPlayer)
 local ThrowModule = require(game.ReplicatedStorage.Modules.Gui.Main.Throw)
 local ThrowController = require(game.ReplicatedStorage.Modules.Client.ThrowController)
@@ -8,7 +9,7 @@ local BrainController = require(game.ReplicatedStorage.Modules.Client.BrainsCont
 
 local Player = game.Players.LocalPlayer or game.Players.PlayerAdded:Wait()
 
--- Currencies.Init()
+Currencies.Init()
 -- BrainController.Initialize()
 
 local InitializedCharModules = false

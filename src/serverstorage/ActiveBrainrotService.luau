@@ -1,6 +1,3 @@
--- implement this, fire repevent and replicate brainrot in all clients
--- also check activebrainrotcontroller
-
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local RepEvent = ReplicatedStorage.Events:FindFirstChild("RepEvent")

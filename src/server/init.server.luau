@@ -8,7 +8,7 @@ local BrainService = require(game.ServerStorage.Modules.BrainService)
 
 HitRegister.Initialize()
 ThrowService.Initialize()
-NPCService.Initialize()
+-- NPCService.Initialize()
 BrainService.Initialize()
 
 game.Players.PlayerAdded:Connect(function(player)
