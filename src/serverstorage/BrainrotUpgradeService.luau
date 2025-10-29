@@ -1,0 +1,2 @@
+-- TODO: Implement Brainrot upgrade logic
+-- Take read currency from currency service and call activebrainrotservice to apply upgrades based on algo

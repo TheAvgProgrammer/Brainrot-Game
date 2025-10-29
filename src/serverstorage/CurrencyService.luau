@@ -35,7 +35,15 @@ function module.AddCurrency(player, name, value)
 	local userCurrencies = playercurrencies[player.UserId]
 	if userCurrencies then
 		userCurrencies[name] = userCurrencies[name] + value
-		CurrencyEvent:InvokeClient(player, userCurrencies)
+		userCurrencies[name] = math.max(0, userCurrencies[name]) -- Prevent negative currency
+
+		local dataToSend = {
+			message = "CurrencyUpdate",
+			RotPoints = userCurrencies.RotPoints,
+			Coins = userCurrencies.Coins,
+		}
+
+		CurrencyEvent:InvokeClient(player, dataToSend)
 	end
 end
 

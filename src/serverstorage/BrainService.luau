@@ -8,17 +8,24 @@ local Remote = RS.Events.RepEvent
 
 local module = {}
 
+local collectedbrains = {}
+
 function onBrainTouched(touchedPart, brain)
 	local TouchedCharacter = touchedPart:FindFirstAncestorOfClass("Model")
-	print("Brain touched by ", TouchedCharacter.Name)
-	print("Checking for humanoid in ", TouchedCharacter:FindFirstChildOfClass("Humanoid"))
-	print("Player from character: ", game.Players:GetPlayerFromCharacter(TouchedCharacter))
+	--print("Brain touched by ", TouchedCharacter.Name)
+	--print("Checking for humanoid in ", TouchedCharacter:FindFirstChildOfClass("Humanoid"))
+	--print("Player from character: ", game.Players:GetPlayerFromCharacter(TouchedCharacter))
 
 	if
 		TouchedCharacter
 		and TouchedCharacter:FindFirstChildOfClass("Humanoid")
 		and game.Players:GetPlayerFromCharacter(TouchedCharacter)
 	then
+		if not collectedbrains[brain] then
+			collectedbrains[brain] = true
+		else
+			return
+		end
 		print("Brain collected by ", game.Players:GetPlayerFromCharacter(TouchedCharacter).Name)
 		CurrencyService.AddCurrency(game.Players:GetPlayerFromCharacter(TouchedCharacter), "RotPoints", 1)
 		brain:Destroy()

@@ -1,78 +1,38 @@
 local RS = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
+local ActiveBrainrot = require(script.Parent.ActiveBrainrot)
 local RepEvent = RS.Events.RepEvent
 
-local module = {}
+local module = {
+	Instance = nil,
+}
 
 local ActiveBrainrots = {}
 
-function onHeartbeat(player)
-	RunService.Heartbeat:Connect(function(deltaTime)
-		module.UpdateBrainrotPosition(player, deltaTime)
-	end)
-end
-
 function module.Initialize()
 	RepEvent.OnClientEvent:Connect(function(data)
-		if data.message == "InitializeBrainrot" then
-			module.InitializePlayer(data.plr, data) -- immediate update
+		if data.message then
+			if data.message == "InitializeBrainrot" then
+				module.InitializePlayer(data.plr, data)
+			elseif data.message == "UpdateBrainrotScale" then
+				module.Instance.ActiveBrainrot:UpgradeBrainrot(data.NewScale)
+			end
 		end
 	end)
 end
 
 function module.InitializePlayer(player, data)
-	local BrainrotName = data.SelectedBrainrot
-	if not BrainrotName then
-		error("No Brainrot Selected or brainrot not found")
-	end
-
-	local Model: Model = RS.Models:FindFirstChild(BrainrotName):Clone()
-	Model.Parent = player.Character
-	Model.PrimaryPart.Anchored = true -- We'll manually position it
-
-	ActiveBrainrots[player] = {
-		Model = Model,
-		FloatOffset = math.random() * 2 * math.pi, -- randomize float phase
-	}
-
-	onHeartbeat(player)
+	module.Instance = ActiveBrainrot.init(player, data)
+	local instance = module.Instance
+	task.delay(3, function()
+		for i = 1, 5 do
+			instance:UpgradeBrainrot(instance.ActiveBrainrot:GetScale() + i / 10)
+			task.wait(0.5)
+		end
+	end)
 end
 
-function module.UpdateBrainrotPosition(player, deltaTime)
-	local data = ActiveBrainrots[player]
-	if not data then
-		return
-	end
-
-	local Model = data.Model
-	if not Model or not Model.PrimaryPart or not player.Character then
-		return
-	end
-
-	local hrp = player.Character:FindFirstChild("HumanoidRootPart")
-	if not hrp then
-		return
-	end
-
-	-- Fixed offset relative to player (to their top-right)
-	local offset = Vector3.new(2.5, 1.5, 0) -- (X=right, Y=up, Z=front/back)
-
-	-- Floating motion
-	local floatSpeed = 2
-	local floatAmplitude = 0.5
-	local floatY = math.sin(tick() * floatSpeed + data.FloatOffset) * floatAmplitude
-
-	-- Compute target position
-	local targetPos = hrp.Position + offset + Vector3.new(0, floatY, 0)
-
-	-- Smoothly interpolate (lerp) for clean motion
-	local currentPos = Model.PrimaryPart.Position
-	local newPos = currentPos:Lerp(targetPos, 0.1) -- smaller = smoother
-
-	-- Face same direction as player
-	local targetCFrame = CFrame.new(newPos) * CFrame.Angles(0, hrp.Orientation.Y * math.pi / 180, 0)
-	Model:SetPrimaryPartCFrame(targetCFrame)
-end
+function module.IncreaseBrainrotSize(player) end
 
 return module
